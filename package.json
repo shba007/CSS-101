@@ -5,14 +5,15 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "preview": "npx serve dist"
   },
   "dependencies": {
     "parcel-bundler": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
-    "typescript": "4.4.4"
+    "@babel/core": "7.23.2",
+    "typescript": "5.2.2"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
