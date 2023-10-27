@@ -3,10 +3,6 @@
 	src: url('./assets/fonts/Poppins-Regular.ttf');
 }
 @font-face {
-	font-family: 'MsMadi';
-	src: url('./assets/fonts/MsMadi-Regular.ttf');
-}
-@font-face {
 	font-family: 'Rawkbrush';
 	src: url('./assets/fonts/Rawkbrush.otf');
 }
