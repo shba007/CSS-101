@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+
 :root {
 	--color-dark: #111928bf;
 	--color-primary: #3878ee;
+	--color-primary-light: #0ea5e9;
+	--color-success: #22c55e;
 	--border-rounder: 9999px;
 }
 /* CSS Reset */
@@ -8,19 +12,22 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Exo 2', sans-serif;
 }
+
 html,
 body {
 	position: relative;
 	width: 100vw;
 	height: 100vh;
 	overflow-x: hidden;
+	color: white;
 }
 
-nav > ul {
-	display: flex;
-	gap: 0.5rem;
-	font-size: 1.2rem;
+button,
+input {
+	color: inherit;
+	outline: none;
 }
 
 ul {
@@ -29,8 +36,52 @@ ul {
 }
 /* CSS Reset */
 
+nav {
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 2rem;
+	z-index: 10;
+	background-color: var(--color-dark);
+	backdrop-filter: blur(16px) saturate(180%);
+}
+
+nav > a > svg {
+	width: 2.5rem;
+	aspect-ratio: 1/1;
+}
+
+nav > ul {
+	display: flex;
+	gap: 2rem;
+	font-size: 16px;
+}
+
+nav > ul > li {
+	cursor: pointer;
+}
+
+#app {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+#section-form {
+	grid-row-start: span 2;
+}
+
+#section-btn {
+	display: flex;
+	gap: 1rem;
+}
 button {
-	color: white;
 	font-size: 1rem;
 	cursor: pointer;
 }
@@ -43,6 +94,10 @@ button {
 	backdrop-filter: blur(16px) saturate(180%);
 }
 
+button:hover {
+	background-color: var(--color-primary-light);
+}
+
 button[disabled] {
 	background-color: var(--color-dark);
 	border: 1px solid #ffffff20;
@@ -50,40 +105,86 @@ button[disabled] {
 }
 
 form {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	margin: 1rem auto;
+	gap: 0.8rem;
 	border-radius: 8px;
 	border: 1px solid #ffffff20;
-	padding: 0.8rem 1.85rem;
-	max-width: 32rem;
-	color: white;
+	padding: 1.5rem 2rem;
+
 	background-color: var(--color-dark);
 	backdrop-filter: blur(16px) saturate(180%);
+	/* max-width: 256px; */
+	max-width: 24rem;
+}
+
+form > fieldset {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	border: none;
+	/* outline: none; */
+}
+
+form #rememberField {
+	flex-direction: row;
 }
 
 input {
-	margin: 0.5rem;
 	outline: none;
 	border-radius: var(--border-rounder);
 	border: none;
-	padding: 0.4rem 1rem;
+	padding: 0.6rem 1.2rem;
 	width: 100%;
-	max-width: 256px;
+	background-color: #151e22;
+}
+input[type='submit'] {
+	padding: 0.6rem 0.8rem;
+
+	background-color: var(--color-primary);
+	cursor: pointer;
+}
+input[type='submit']:hover {
+	background-color: var(--color-primary-light);
+}
+
+input:not([type='submit']):not([type='checkbox']):focus {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+form #rememberField #remember {
+	width: min-content;
 }
 
 .card {
 	border-radius: 6px;
-	height: 256px;
-	aspect-ratio: 5/3;
+	height: 312px;
+	aspect-ratio: 4/3;
 	background-color: var(--color-dark);
 	overflow: hidden;
+
+	box-shadow: 0px 4px 12px -2px hsla(219, 84%, 58%, 0.6);
+}
+
+.card:hover {
+	box-shadow: 0px 16px 24px -14px hsla(219, 84%, 58%, 0.8);
 }
 
 .card > img {
 	width: 100%;
-	height: 100%;
+	aspect-ratio: 9/5;
 	object-fit: cover;
+}
+
+.card .details {
+	padding: 6px 12px;
+}
+
+.card .details > h4 {
+	font-size: 20px;
 }
 
 .tab {
@@ -92,27 +193,77 @@ input {
 	border-radius: var(--border-rounder);
 	padding: 0.6rem 1.2rem;
 	width: fit-content;
-	color: white;
+
 	background: var(--color-dark);
 }
 
-.tab > * {
+.tab > li {
 	background-color: var(--color-dark);
 	border-radius: var(--border-rounder);
 	padding: 0.4rem 1.2rem;
+	cursor: pointer;
 }
 
-.background-gradient {
-	background-image: radial-gradient(
-			circle at 40% 91%,
-			rgba(251, 251, 251, 0.04) 0%,
-			rgba(251, 251, 251, 0.04) 50%,
-			rgba(229, 229, 229, 0.04) 50%,
-			rgba(229, 229, 229, 0.04) 100%
-		),
-		radial-gradient(circle at 66% 97%, rgba(36, 36, 36, 0.04) 0%, rgba(36, 36, 36, 0.04) 50%, rgba(46, 46, 46, 0.04) 50%, rgba(46, 46, 46, 0.04) 100%),
-		radial-gradient(circle at 86% 7%, rgba(40, 40, 40, 0.04) 0%, rgba(40, 40, 40, 0.04) 50%, rgba(200, 200, 200, 0.04) 50%, rgba(200, 200, 200, 0.04) 100%),
-		radial-gradient(circle at 15% 16%, rgba(99, 99, 99, 0.04) 0%, rgba(99, 99, 99, 0.04) 50%, rgba(45, 45, 45, 0.04) 50%, rgba(45, 45, 45, 0.04) 100%),
-		radial-gradient(circle at 75% 99%, rgba(243, 243, 243, 0.04) 0%, rgba(243, 243, 243, 0.04) 50%, rgba(37, 37, 37, 0.04) 50%, rgba(37, 37, 37, 0.04) 100%),
-		linear-gradient(90deg, rgb(34, 222, 237), rgb(135, 89, 215));
+.tab > li:hover {
+	background-color: var(--color-primary);
+}
+
+.notification {
+	/* position: fixed; */
+	/* top: 6rem; */
+	/* right: 2rem; */
+	border-radius: 12px;
+	padding: 1rem 1rem;
+	width: 324px;
+	height: auto;
+
+	background-color: var(--color-dark);
+	box-shadow: 0px 4px 12px -2px hsla(219, 84%, 58%, 0.6);
+	z-index: 20;
+}
+
+.notification > .wrapper {
+	position: relative;
+	display: grid;
+	width: 100%;
+	grid-template-rows: min-content max-content;
+	grid-template-columns: min-content max-content;
+	column-gap: 0.8rem;
+}
+
+.notification .icon {
+	width: 1.8rem;
+	aspect-ratio: 1/1;
+	color: var(--color-success);
+}
+
+.notification .title {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.notification .message {
+	font-size: 14px;
+	font-weight: 400;
+	grid-column-start: 2;
+	width: 100%;
+	white-space: normal;
+}
+
+#section-typography {
+	grid-column-start: span 2;
+	padding: 1.5rem 1.5rem;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	background-color: var(--color-dark);
+}
+
+.background {
+	background-image: url('https://w.wallhaven.cc/full/l8/wallhaven-l82j8l.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	backdrop-filter: blur(10px) brightness(60%) saturate(80%);
 }
